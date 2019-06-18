@@ -21,5 +21,20 @@ implementation 'com.github.jaidevnaik5886:RxSplashScreen:1.0'
 ```
 ## Usage 
 ```
-
+       RxSplashScreen.Builder(this)
+            .setSplashScreen(R.layout.activity_splash, 5, TimeUnit.SECONDS)
+            .setAuthenticationCheckValue(false)
+            .navigate(object : RxSplashScreenInteraction {
+                override fun navigateToLoginScreen() {
+                    setContentView(R.layout.activity_login)
+                }
+                override fun navigateToHomeScreen(context: Context) {
+                    val navigateToCitizen = Intent(context, HomeActivity::class.java)
+                    startActivity(navigateToCitizen)
+                    finish()
+                }
+            })
+            .splash()
 ```
+
+
