@@ -33,5 +33,12 @@ implementation 'com.github.jaidevnaik5886:RxSplashScreen:1.0'
             })
             .splash()
 ```
+## Functions
+```
+1. setSplashScreen function is used to set the splashscreen layout 
+2. setFirstScreen function is used to set the layout of the screen after splashscreen
+3. setConditionalNavigation is optional, if you don't use it the navigation will be from splash to first screen. If you use this function, then navigation will be from splash to second screen if token is set true
+   e.g.. This is useful if you want to navigate the user from splash to homescreen if the user is logged in
 
+```
 
