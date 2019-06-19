@@ -14,12 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         RxSplashScreen.Builder(this)
             .setSplashScreen(R.layout.activity_splash, 5, TimeUnit.SECONDS)
-            .setAuthenticationCheckValue(false)
-            .navigate(object : RxSplashScreenInteraction {
-                override fun navigateToLoginScreen() {
-                    setContentView(R.layout.activity_login)
-                }
-                override fun navigateToHomeScreen(context: Context) {
+            .setFirstScreen(R.layout.activity_login)
+            .setConditionalNavigation(true, object : RxSplashScreenInteraction {
+                override fun navigateToSecondScreen(context: Context) {
                     val navigateToCitizen = Intent(context, HomeActivity::class.java)
                     startActivity(navigateToCitizen)
                     finish()

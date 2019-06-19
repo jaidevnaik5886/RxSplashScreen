@@ -4,7 +4,6 @@ import android.content.Context
 
 interface RxSplashScreenInteraction {
 
-    fun navigateToLoginScreen()
-    fun navigateToHomeScreen(context: Context)
+    fun navigateToSecondScreen(context: Context)
 
 }

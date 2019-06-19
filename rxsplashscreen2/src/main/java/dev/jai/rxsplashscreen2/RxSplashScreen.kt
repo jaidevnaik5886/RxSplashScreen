@@ -15,7 +15,7 @@ class RxSplashScreen private constructor(builder: Builder) {
     private var token: Boolean = false
     private var period: Long = 1
     private var timeUnit: TimeUnit = TimeUnit.SECONDS
-    private var rxSplashInteraction: RxSplashScreenInteraction
+    private var rxSplashInteraction: RxSplashScreenInteraction?
 
     init {
         this.splashLayout = builder.splashLayout
@@ -27,10 +27,11 @@ class RxSplashScreen private constructor(builder: Builder) {
 
     class Builder(private val context: Context) {
         internal var splashLayout: Int = 0
+        internal var firstScreen: Int = 0
         internal var token: Boolean = false
         internal var period: Long = 1
         internal var timeUnit: TimeUnit = TimeUnit.SECONDS
-        internal lateinit var rxSplashInteraction: RxSplashScreenInteraction
+        var rxSplashInteraction: RxSplashScreenInteraction? = null
 
         fun splash(): RxSplashScreen {
             val activity = context as Activity
@@ -41,8 +42,13 @@ class RxSplashScreen private constructor(builder: Builder) {
                     override fun onComplete() {}
                     override fun onNext(data: Timed<Long>) {
                         dispose()
-                        if (!token) rxSplashInteraction.navigateToLoginScreen()
-                        else rxSplashInteraction.navigateToHomeScreen(context)
+                        if (!token) {
+                            if (firstScreen != 0) {
+                                activity.setContentView(firstScreen)
+                            }
+                        } else {
+                            rxSplashInteraction?.navigateToSecondScreen(context)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
@@ -58,13 +64,13 @@ class RxSplashScreen private constructor(builder: Builder) {
             return this
         }
 
-        fun setAuthenticationCheckValue(token: Boolean): Builder {
-            this.token = token
+        fun setFirstScreen(@LayoutRes firstScreen: Int): Builder {
+            this.firstScreen = firstScreen
             return this
-
         }
 
-        fun navigate(rxSplashInteraction: RxSplashScreenInteraction): Builder {
+        fun setConditionalNavigation(token: Boolean, rxSplashInteraction: RxSplashScreenInteraction): Builder {
+            this.token = token
             this.rxSplashInteraction = rxSplashInteraction
             return this
         }
