@@ -1,3 +1,5 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Generic%20Dialog-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7680)
+
 # RxSplashScreen
 
 Now no need to make a separate SplashScreenActivity in your project. Add the below piece of code in your LoginActivity or SecondActivity after SplashScreen
