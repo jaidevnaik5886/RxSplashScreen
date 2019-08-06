@@ -44,3 +44,4 @@ implementation 'com.github.jaidevnaik5886:RxSplashScreen:1.0'
 
 ```
 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P810RKM)
